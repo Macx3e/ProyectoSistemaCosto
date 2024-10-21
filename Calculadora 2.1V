@@ -1,3 +1,4 @@
+//Este es mi sistema de costo Version 2.1 Creado Por Maximiliano Valdivia//
 Proceso CalculadoraPrecioProducto
 	///////////////////////////////////////// ////CALCULADORADEPRODUCTO/////////////////////////////////////////////////////////////
 	definir producto Como Caracter;
