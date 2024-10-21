@@ -1,0 +1,165 @@
+Proceso CalculadoraPrecioProducto
+	///////////////////////////////////////// ////CALCULADORADEPRODUCTO/////////////////////////////////////////////////////////////
+	definir producto Como Caracter;
+	definir cantidad Como Entero;
+	definir preciounidad Como Real;
+	definir subtotal Como Real;
+	
+	
+	Escribir "Ingresa nombre del producto a comprar";
+	leer producto;
+	Escribir "Presione una tecla para continuar";
+	Esperar Tecla;
+	
+	
+	Borrar Pantalla;
+	Repetir
+		
+	 Escribir "Ingresa precio del producto";
+	 leer preciounidad ;
+ Hasta Que preciounidad > 0 
+ 
+ Escribir "Presione una tecla para continuar";
+	Esperar Tecla;
+	Borrar Pantalla;
+	
+	Escribir "Ingresa la cantidad que deseas comprar";
+	leer cantidad;
+	Escribir "Presione una tecla para continuar";
+	Esperar Tecla;
+	Limpiar Pantalla;
+	
+	
+	subtotal <- cantidad*preciounidad;
+	Escribir "Su subtotal corresponde a un monto de " , subtotal, " pesos";
+	//Hasta ahora, hemos realizado la calculadora de precio original del producto calculando cantidad*precio de unidad// 
+	
+	
+	/////////////////////////////////////////////////////////DESCUENTOS///////////////////////////////////////////////////////
+	
+	Definir Mensaje Como Caracter;
+	Repetir
+		Mensaje <- " ";
+		Escribir "¿Tiene usted cupon de descuento? Respuestas Si:No";
+		leer mensaje;
+		Limpiar Pantalla;
+	Hasta Que Mensaje= "si" o Mensaje="no" o Mensaje="SI" o Mensaje="NO";
+	
+	////////////////////////////////////////////////ArregloUnidimensional///////////////////////////////////////////////////////
+	definir descuentostotal Como Real;
+	Dimension descuentostotal[5];
+	descuentostotal[0] <- 0.1;
+	descuentostotal[1]<- 0.2;
+	descuentostotal[2]<- 0.3;
+	descuentostotal[3]<- 0.4;
+	descuentostotal[4]<- 0.5;
+	definir cuponentregado Como Caracter;
+	definir dsc10 Como caracter;
+	definir dsc20 Como caracter;
+	definir dsc30 Como caracter;
+	dsc10<-" ";
+	dsc20<-" ";
+	dsc30<-" ";
+	
+	definir cupon Como Caracter; 
+	
+	
+	//////////////////////////////////////////////////AplicarDescuentocupon///////////////////////////////////////////////////////////////
+	definir cupondescontivo Como Real;
+	definir descuentoxcupon Como Real;
+	cupondescontivo <- 0;
+	si (mensaje="si") Entonces 
+		cupondescontivo <- 0;
+		// ahora empezamos y solicitamos que nos diga cual es el codigo de cupon que la persona tiene//
+		Escribir "Porfavor ingrese su cupon de descuento, son dsc10, dsc20, dsc30";
+		leer cuponentregado;
+		//partiremos con el 10%
+		//////////////////////////////dsc10%///////////////////////////////////////
+		
+		si cuponentregado = "dsc10" Entonces
+			descuentoxcupon <- subtotal * descuentostotal[0];
+		FinSi
+		si cuponentregado = "dsc20" Entonces
+			descuentoxcupon <- subtotal * descuentostotal[1];
+		FinSi
+		si cuponentregado = "dsc30" Entonces
+			descuentoxcupon <- subtotal * descuentostotal[2];
+		FinSi
+		definir valornuevo Como Real;
+		Escribir "Su precio final corresponde a ", subtotal-descuentoxcupon;
+		valornuevo<-subtotal-descuentoxcupon;
+		Escribir "Presione una tecla para continuar";
+		Esperar Tecla;
+		Limpiar Pantalla;
+		
+		/////////////////////////////////////////Descuentoxunidad///////////////////////////////////////////////////
+		Definir descuentoxcantidad Como Real;
+		si cantidad <= 5 Entonces
+			Escribir "Usted no accede a descuento por cantidad";
+			
+			Escribir "Su precio sin IVA es de ", subtotal;
+			descuentoxcantidad <-0;
+			
+		SiNo
+			si cantidad>5 y cantidad<10 Entonces
+				descuentoxcantidad <- valornuevo * descuentostotal[0];
+				
+				Escribir"Al comprar 5 unidades o más, accede a un 10% descontivo a su precio";
+			FinSi
+			si cantidad >= 10 y cantidad < 20 Entonces
+				descuentoxcantidad <-valornuevo *descuentostotal[1];
+				Escribir "Al comprar 10 unidades o más, accede a un 20% descontivo a su precio";
+			FinSi
+			si cantidad >=20 Entonces
+				descuentoxcantidad <- valornuevo *descuentostotal[2];
+				Escribir "Al comprar 20 unidades o más, accede a un 30% descontivo a su precio";
+			FinSi
+			
+			//daremos el precio ahora con descuento pero sin IVA//
+			
+			Escribir "Su precio sin impuestos y con descuentos de cupon y unidad es de ", (valornuevo-descuentoxcantidad);
+			definir valorsiniva Como Real;
+			valorsiniva<-valornuevo-descuentoxcantidad;
+			Escribir "Presione una tecla para continuar";
+			Esperar Tecla;
+			Limpiar Pantalla;
+			
+		FinSi
+	
+	FinSi
+	
+	////////////////////////////////////////////////////////IVA/////////////////////////////////////////////////////////////////////
+	
+	Definir iva Como Real;
+	iva <- 0.19;
+	Escribir "El valor total del producto con IVA es de ", valorsiniva+(valorsiniva*iva);
+	
+	////////////////////////////////////////////////////////ENVIO/////////////////////////////////////////////////////////////////
+	
+	definir envio Como Real;
+	definir precioenvio Como Real;
+	definir kilo como real;
+	definir preciokilo como real;
+	
+	precioenvio <- 1000;
+	preciokilo <- 200;
+	kilo <- 0;
+	
+	Escribir "Ingrese el peso total del producto en kilos";
+	leer kilo;
+	
+	envio <- precioenvio + (kilo * preciokilo);
+	Escribir "El costo de su envio es de ",envio," pesos";	
+	Escribir "Presione una tecla para continuar";
+	Esperar Tecla;
+	Limpiar Pantalla;
+	
+	////////////////////////////////////////////////////Final//////////////////////////////////////////////////////////////////////
+	
+	Escribir "Tuvo ",descuentoxcupon," pesos de rebaja por cupon";
+	Escribir "Tuvo ",descuentoxcantidad, " pesos de rebaja por cantidad";
+	Escribir "Paga ",valorsiniva*iva, " pesos por impuesto IVA";
+	Escribir "El costo de envio es de ",envio," pesos";
+	Escribir "El total a pagar es de ", envio + (valorsiniva*iva+valorsiniva);
+	
+FinProceso
