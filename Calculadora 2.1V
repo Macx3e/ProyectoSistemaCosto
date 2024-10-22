@@ -105,15 +105,15 @@ Proceso CalculadoraPrecioProducto
 			si cantidad>5 y cantidad<10 Entonces
 				descuentoxcantidad <- valornuevo * descuentostotal[0];
 				
-				Escribir"Al comprar 5 unidades o más, accede a un 10% descontivo a su precio";
+				Escribir"Al comprar 5 unidades o mas, accede a un 10% descontivo a su precio";
 			FinSi
 			si cantidad >= 10 y cantidad < 20 Entonces
 				descuentoxcantidad <-valornuevo *descuentostotal[1];
-				Escribir "Al comprar 10 unidades o más, accede a un 20% descontivo a su precio";
+				Escribir "Al comprar 10 unidades o mas, accede a un 20% descontivo a su precio";
 			FinSi
 			si cantidad >=20 Entonces
 				descuentoxcantidad <- valornuevo *descuentostotal[2];
-				Escribir "Al comprar 20 unidades o más, accede a un 30% descontivo a su precio";
+				Escribir "Al comprar 20 unidades o mas, accede a un 30% descontivo a su precio";
 			FinSi
 			
 			//daremos el precio ahora con descuento pero sin IVA//
@@ -141,15 +141,15 @@ Proceso CalculadoraPrecioProducto
 			si cantidad>5 y cantidad<10 Entonces
 				descuentoxcantidad <- subtotal * descuentostotal[0];
 				
-				Escribir"Al comprar 5 unidades o más, accede a un 10% descontivo a su precio";
+				Escribir"Al comprar 5 unidades o mas, accede a un 10% descontivo a su precio";
 			FinSi
 			si cantidad >= 10 y cantidad < 20 Entonces
 				descuentoxcantidad <-subtotal *descuentostotal[1];
-				Escribir "Al comprar 10 unidades o más, accede a un 20% descontivo a su precio";
+				Escribir "Al comprar 10 unidades o mas, accede a un 20% descontivo a su precio";
 			FinSi
 			si cantidad >=20 Entonces
 				descuentoxcantidad <- subtotal *descuentostotal[2];
-				Escribir "Al comprar 20 unidades o más, accede a un 30% descontivo a su precio";
+				Escribir "Al comprar 20 unidades o mas, accede a un 30% descontivo a su precio";
 			FinSi
 			
 			//daremos el precio ahora con descuento pero sin IVA//
@@ -166,7 +166,8 @@ Proceso CalculadoraPrecioProducto
 		
 	FinSi
 	////////////////////////////////////////////////////////IVA/////////////////////////////////////////////////////////////////////
-	
+	definir valorsiniva Como Real;
+	valorsiniva<-0;
 	Definir iva Como Real;
 	iva <- 0.19;
 	Escribir "El valor total del producto con IVA es de ", valorsiniva+(valorsiniva*iva);
@@ -200,7 +201,7 @@ Proceso CalculadoraPrecioProducto
 	 Escribir "El total a pagar es de ", envio + (valorsiniva*iva+valorsiniva);
  SiNo
 	 si mensaje="no" o mensaje="NO" o mensaje="No" o mensaje="nO" Entonces
-		 Escribir "Tuvo 0 pesos de rebaja por cupon, ya que no utilizó";
+		 Escribir "Tuvo 0 pesos de rebaja por cupon, ya que no utilizo";
 		 Escribir "Tuvo ",descuentoxcantidad, " pesos de rebaja por cantidad";
 		 Escribir "Paga ",valorsiniva*iva, " pesos por impuesto IVA";
 		 Escribir "El costo de envio es de ",envio," pesos";
