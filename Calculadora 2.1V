@@ -172,7 +172,7 @@ Proceso CalculadoraPrecioProducto
 	 Escribir "El valor total del producto con IVA es de ", valorsiniva+(valorsiniva*iva);
  sino 
 	 si mensaje="no" o mensaje="NO" o mensaje="No" o mensaje="nO" Entonces
-		 definir valorsiniva Como Real;
+		 
 		 valorsiniva<-subtotal-descuentoxcantidad;
 		 Definir iva Como Real;
 		 iva <- 0.19;
