@@ -44,7 +44,7 @@ Proceso CalculadoraPrecioProducto
 		Escribir "¿Tiene usted cupon de descuento? Respuestas Si:No";
 		leer mensaje;
 		Limpiar Pantalla;
-	Hasta Que Mensaje= "si" o Mensaje="no" o Mensaje="SI" o Mensaje="NO";
+	Hasta Que Mensaje= "si" o Mensaje="no" o Mensaje="SI" o Mensaje="NO" o mensaje="Si" o mensaje="sI" o mensaje="No" o mensaje="nO";
 	
 	////////////////////////////////////////////////ArregloUnidimensional///////////////////////////////////////////////////////
 	definir descuentostotal Como Real;
@@ -69,7 +69,7 @@ Proceso CalculadoraPrecioProducto
 	definir cupondescontivo Como Real;
 	definir descuentoxcupon Como Real;
 	cupondescontivo <- 0;
-	si (mensaje="si") Entonces 
+	si (mensaje="si"o mensaje="SI" o mensaje="Si" o mensaje= "sI") Entonces 
 		cupondescontivo <- 0;
 		// ahora empezamos y solicitamos que nos diga cual es el codigo de cupon que la persona tiene//
 		Escribir "Porfavor ingrese su cupon de descuento, son dsc10, dsc20, dsc30";
@@ -128,7 +128,43 @@ Proceso CalculadoraPrecioProducto
 		FinSi
 	
 	FinSi
-	
+	si mensaje="no" o mensaje="NO" o mensaje="No" o mensaje="nO" Entonces
+		
+		Definir descuentoxcantidad Como Real;
+		si cantidad <= 5 Entonces
+			Escribir "Usted no accede a descuento por cantidad";
+			
+			Escribir "Su precio sin IVA es de ", subtotal;
+			descuentoxcantidad <-0;
+			
+		SiNo
+			si cantidad>5 y cantidad<10 Entonces
+				descuentoxcantidad <- subtotal * descuentostotal[0];
+				
+				Escribir"Al comprar 5 unidades o más, accede a un 10% descontivo a su precio";
+			FinSi
+			si cantidad >= 10 y cantidad < 20 Entonces
+				descuentoxcantidad <-subtotal *descuentostotal[1];
+				Escribir "Al comprar 10 unidades o más, accede a un 20% descontivo a su precio";
+			FinSi
+			si cantidad >=20 Entonces
+				descuentoxcantidad <- subtotal *descuentostotal[2];
+				Escribir "Al comprar 20 unidades o más, accede a un 30% descontivo a su precio";
+			FinSi
+			
+			//daremos el precio ahora con descuento pero sin IVA//
+			
+			Escribir "Su precio sin impuestos y con descuentos de unidad es de ", (subtotal-descuentoxcantidad);
+			definir valorsiniva Como Real;
+			valorsiniva<-subtotal-descuentoxcantidad;
+			Escribir "Presione una tecla para continuar";
+			Esperar Tecla;
+			Limpiar Pantalla;
+			
+		FinSi
+		
+		
+	FinSi
 	////////////////////////////////////////////////////////IVA/////////////////////////////////////////////////////////////////////
 	
 	Definir iva Como Real;
@@ -156,11 +192,21 @@ Proceso CalculadoraPrecioProducto
 	Limpiar Pantalla;
 	
 	////////////////////////////////////////////////////Final//////////////////////////////////////////////////////////////////////
-	
-	Escribir "Tuvo ",descuentoxcupon," pesos de rebaja por cupon";
-	Escribir "Tuvo ",descuentoxcantidad, " pesos de rebaja por cantidad";
-	Escribir "Paga ",valorsiniva*iva, " pesos por impuesto IVA";
-	Escribir "El costo de envio es de ",envio," pesos";
-	Escribir "El total a pagar es de ", envio + (valorsiniva*iva+valorsiniva);
-	
+	si (mensaje="si"o mensaje="SI" o mensaje="Si" o mensaje= "sI") Entonces
+		Escribir "Tuvo ",descuentoxcupon," pesos de rebaja por cupon";
+	 Escribir "Tuvo ",descuentoxcantidad, " pesos de rebaja por cantidad";
+	 Escribir "Paga ",valorsiniva*iva, " pesos por impuesto IVA";
+	 Escribir "El costo de envio es de ",envio," pesos";
+	 Escribir "El total a pagar es de ", envio + (valorsiniva*iva+valorsiniva);
+ SiNo
+	 si mensaje="no" o mensaje="NO" o mensaje="No" o mensaje="nO" Entonces
+		 Escribir "Tuvo 0 pesos de rebaja por cupon, ya que no utilizó";
+		 Escribir "Tuvo ",descuentoxcantidad, " pesos de rebaja por cantidad";
+		 Escribir "Paga ",valorsiniva*iva, " pesos por impuesto IVA";
+		 Escribir "El costo de envio es de ",envio," pesos";
+		 Escribir "El total a pagar es de ", envio + (valorsiniva*iva+valorsiniva);
+	 FinSi
+	 
+ FinSi
+ 
 FinProceso
