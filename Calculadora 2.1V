@@ -166,12 +166,20 @@ Proceso CalculadoraPrecioProducto
 		
 	FinSi
 	////////////////////////////////////////////////////////IVA/////////////////////////////////////////////////////////////////////
-	definir valorsiniva Como Real;
-	valorsiniva<-0;
-	Definir iva Como Real;
-	iva <- 0.19;
-	Escribir "El valor total del producto con IVA es de ", valorsiniva+(valorsiniva*iva);
-	
+	si (mensaje="si"o mensaje="SI" o mensaje="Si" o mensaje= "sI") Entonces 
+	 Definir iva Como Real;
+	 iva <- 0.19;
+	 Escribir "El valor total del producto con IVA es de ", valorsiniva+(valorsiniva*iva);
+ sino 
+	 si mensaje="no" o mensaje="NO" o mensaje="No" o mensaje="nO" Entonces
+		 definir valorsiniva Como Real;
+		 valorsiniva<-subtotal-descuentoxcantidad;
+		 Definir iva Como Real;
+		 iva <- 0.19;
+		 Escribir "El valor total del producto con IVA es de ", valorsiniva+(valorsiniva*iva);
+	 FinSi
+ FinSi
+ 
 	////////////////////////////////////////////////////////ENVIO/////////////////////////////////////////////////////////////////
 	
 	definir envio Como Real;
