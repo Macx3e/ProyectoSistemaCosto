@@ -1,5 +1,0 @@
-La Aplicación calculadora V2.1 Permite calcular descuentos e impuestos, para facilitar al usuario su compra, a través de la utilización de implementacion de operaciones aritmeticas y operadores de comparación, se realizo un control de flujo a través de parametros tales como condiciones y bucles, finalmente la utilización de arreglos unidimensionales entre otros. 
-				<
-
-
-https://raw.githubusercontent.comMacx3e/ProyectoSistemaCosto/main/arreglov1.PNG
